@@ -1,3 +1,5 @@
+print("importing libraries---------------\n")
+
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -10,15 +12,15 @@ print("\n ---NLTK Tokenizer--- ")
 user_input = input("Enter the text you want to tokenize: ")
 
 tokens = word_tokenize(user_input)
-print(f"Tokens: {tokens}")
+print(f"Tokens: {tokens}\n")
 
 stop_words = set(stopwords.words('english'))
 filtered_text = [w for w in tokens if not w.lower() in stop_words]
 
-print(f"Cleaned text: {filtered_text}")
+print(f"Cleaned text: {filtered_text}\n")
 
 tagged_tokens = nltk.pos_tag(tokens)
 
-print("\n -- POS TAGS --")
+print("\n -- POS TAGS --\n")
 print(tagged_tokens)
 
