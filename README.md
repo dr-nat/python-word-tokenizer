@@ -1,78 +1,76 @@
-# Simple Natural Language Processing (NLP) Tokenizer
+# 🔍 Simple NLP Tokenizer (Web Edition)
 
-An interactive Python-based tool designed to demonstrate the core stages of a Natural Language Processing pipeline. This utility uses the **Natural Language Toolkit (NLTK)** to transform raw text into structured data through tokenization, filtering, and Part-of-Speech (POS) tagging.
+An interactive Natural Language Processing (NLP) application built with **Python**, **NLTK**, and **Streamlit**. This project demonstrates a complete text-processing pipeline—from raw user input to structured grammatical analysis—accessible via a modern web interface.
 
 ---
 
 ## 🚀 Features
-* **Dynamic User Input:** Process any sentence or paragraph in real-time.
-* **Advanced Tokenization:** Uses NLTK's `punkt` models to intelligently handle punctuation and contractions.
-* **Stop-Word Filtering:** Automatically removes non-essential "filler" words (e.g., "is", "the", "at") to highlight meaningful content.
-* **POS Tagging:** Identifies grammatical categories (Nouns, Verbs, Adjectives) using the `averaged_perceptron_tagger`.
+* **Web Interface:** A clean, reactive UI for real-time text analysis.
+* **Tokenization:** Breaks down complex sentences into individual linguistic units.
+* **Stop-Word Filtering:** Removes high-frequency "noise" words to isolate core meaning.
+* **POS Tagging:** Automatically categorizes words into Parts of Speech (Nouns, Verbs, etc.).
+* **Interactive Tabs:** Organized view of Raw Tokens, Cleaned Text, and POS Tags.
 
 ---
 
-## 📚 Core Libraries & Dependencies
+## 📚 Library & Dependency Breakdown
 
-This project relies on the following libraries and data packages:
+### **1. NLTK (Natural Language Toolkit)**
+The "engine" of the project. It is the leading platform for building Python programs to work with human language data.
+* **`word_tokenize`**: Uses the Punkt algorithm to split text based on punctuation and language rules.
+* **`stopwords`**: A pre-compiled list of 179 English words (like "the", "is", "at") used to filter out non-essential data.
+* **`pos_tag`**: A pre-trained Perceptron Tagger that assigns grammatical labels based on word context.
 
-### **Libraries**
-* **[NLTK (Natural Language Toolkit)](https://www.nltk.org/):** The primary library for NLP in Python, providing the modules for splitting text and identifying grammatical structures.
+### **2. Streamlit**
+The "bridge" between Python and the Web.
+* It turns Python scripts into shareable web apps in minutes.
+* Handles the **Frontend** (UI components like buttons and text areas) and the **Backend** (executing the Python logic) in a single reactive loop.
 
-### **NLTK Data Packages**
-Upon the first execution, the script automatically downloads:
-* `punkt_tab`: Required for the word tokenizer to identify word boundaries.
-* `stopwords`: A corpus of common words used for the filtering stage.
-* `averaged_perceptron_tagger_eng`: The pre-trained model used to assign POS tags.
-
----
-
-## 🏷️ Understanding POS Tags
-
-The script utilizes the **Penn Treebank Tagset**. Below is a guide to the tags you will see in the output:
-
-| Tag | Description | Example from Project |
-| :--- | :--- | :--- |
-| **NN / NNP** | Noun (Singular / Proper) | *student, software, David* |
-| **VB / VBP** | Verb (Base form / Present) | *play, am, eat* |
-| **JJ** | Adjective | *ambitious, green, smart* |
-| **RB** | Adverb | *quickly, very, much* |
-| **PRP / PRP$** | Pronoun (Personal / Possessive) | *we, I / my, your* |
-| **IN** | Preposition or Conjunction | *with, in, for* |
-| **DT** | Determiner | *the, a, this* |
+### **3. Pandas**
+Used to structure the POS Tag results into a clean, readable table format within the web app.
 
 ---
 
-## 🛠️ Installation & Setup
+## 🛠️ Installation & Execution
 
-1.  **Clone the repository:**
+1.  **Clone the Repository:**
     ```bash
     git clone [https://github.com/your-username/python_tokenizer.git](https://github.com/your-username/python_tokenizer.git)
     cd python_tokenizer
     ```
 
-2.  **Set up a Virtual Environment (Recommended):**
+2.  **Activate Virtual Environment:**
     ```bash
-    python3 -m venv myvenv
     source myvenv/bin/activate
     ```
 
-3.  **Install NLTK:**
+3.  **Install Required Packages:**
     ```bash
-    pip install nltk
+    pip install nltk streamlit pandas
     ```
 
-4.  **Run the Application:**
+4.  **Launch the Web App:**
     ```bash
-    python3 nlp_token.py
+    streamlit run app.py
     ```
 
 ---
 
-## 📖 Processing Logic
+## 🏷️ POS Tag Reference (Penn Treebank)
 
-The script follows a standard NLP pipeline:
-1.  **Input:** Captures a string from the user.
-2.  **Tokenization:** Splits the string into a list of individual words and punctuation.
-3.  **Stop-Word Removal:** Compares tokens against a list of common English words and removes them to leave only "content" words.
-4.  **Grammatical Tagging:** Analyzes the remaining words to determine their linguistic role (Noun, Verb, etc.) based on the sentence context.
+| Tag | Description |
+| :--- | :--- |
+| **NN** | Noun, singular |
+| **VB / VBP** | Verb (Base form / Present) |
+| **JJ** | Adjective |
+| **PRP** | Personal Pronoun |
+| **IN** | Preposition or Conjunction |
+| **DT** | Determiner |
+
+---
+
+## 📖 Project Defense: Why this Architecture?
+
+* **Modular Design:** Separating the NLP logic from the UI allows for easier testing and scaling.
+* **Python-Native Frontend:** Using Streamlit ensures the project remains lightweight and focused on data processing rather than heavy JavaScript development.
+* **Educational Transparency:** NLTK was chosen over "black-box" alternatives (like spaCy) specifically to demonstrate the granular steps of the NLP pipeline.
